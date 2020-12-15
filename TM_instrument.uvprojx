@@ -381,6 +381,18 @@
       <Groups>
         <Group>
           <GroupName>exec</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ps2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ps2.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>lib</GroupName>
@@ -389,6 +401,11 @@
               <FileName>ps2.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\ps2.h</FilePath>
+            </File>
+            <File>
+              <FileName>ftfa.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ftfa.h</FilePath>
             </File>
           </Files>
         </Group>
