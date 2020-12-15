@@ -8,7 +8,7 @@
  * @brief File containing enums, structures and declarations for ps2 keyboard.
  * @ver 0.1
  */
-
+#include "MKL05Z4.h"
 
 #ifndef PS2_H
 #define PS2_H
@@ -24,6 +24,10 @@ void Ps2_comm_init(void);
 	*/
 void PORTB_IRQHandler(void);
 
+/**
+	* @brief Function for converting incoming transmission data bits into 8 bit unsigned integer 
+	*/
+uint8_t pow2(uint8_t);
 
 
 #endif /* PS2_H */
