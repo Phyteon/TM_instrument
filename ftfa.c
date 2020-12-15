@@ -2,25 +2,31 @@
 *This file is a part of TM2 project which goal is to create a musical instrument.*
 ******************************************************************************************************/
 /**
- * @file ftfa.h
+ * @file ftfa.c
  * @author Pawelec, Skomial
  * @date Dec 2020
- * @brief File containing enums, structures and declarations for FTFA.
+ * @brief File containing definitions for FTFA.
  * @ver 0.1
  */
  
+ #include "ftfa.h"
  
-#include "MKL05Z4.h"
-
-#ifndef FTFA_H
-#define FTFA_H
-
-
-/**
- * @brief ToBeDetermined
- */
-void Read_tone(void);
-
-
-
-#endif /* FTFA_H */
+void Read_tone(void){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	FTFA->FSTAT |= FTFA_FSTAT_CCIF(1);	// Flash command is completed
+	
+}
+ 
+ 
+ 
+ 
+ 

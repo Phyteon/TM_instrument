@@ -11,7 +11,7 @@
  
  
  
- #include "ps2.h"
+#include "ps2.h"
 
 
 #define CLK_PIN 6
