@@ -20,10 +20,10 @@
 void Ps2_comm_init(void);
 
 /**
-	* @brief Interrupt handler for communication (to be decided)
+	* @brief Interrupt handler for communication - Utilising PTB6 for CLK line, PTB7 for data line 
 	*/
-void PORTA_IRQHandler(void);
-// If I understand correctly, there is no need to use timer module unless the host wants to transmit sth to keyboard
+void PORTB_IRQHandler(void);
+
 
 
 #endif /* PS2_H */
