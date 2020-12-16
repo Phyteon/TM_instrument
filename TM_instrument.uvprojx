@@ -392,6 +392,11 @@
               <FileType>1</FileType>
               <FilePath>.\ps2.c</FilePath>
             </File>
+            <File>
+              <FileName>ftfa.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ftfa.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
