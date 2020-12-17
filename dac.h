@@ -2,7 +2,7 @@
 *This file is a part of TM2 project which goal is to create a musical instrument.*
 ******************************************************************************************************/
 /**
- * @file ps2.h
+ * @file dac.h
  * @author Pawelec, Skomiał
  * @date Dec 2020
  * @brief File containing enums, structures and declarations for DAC module.

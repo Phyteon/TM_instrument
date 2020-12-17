@@ -2,15 +2,18 @@
 *This file is a part of TM2 project which goal is to create a musical instrument.*
 ******************************************************************************************************/
 /**
- * @file ps2.h
+ * @file dac.h
  * @author Pawelec, Skomiał
  * @date Dec 2020
  * @brief File containing enums, structures and declarations for DAC module.
  * @ver 0.1
  */
  
+ 
  #include "dac.h"
+ 
  #define DAC_OUT_PIN 1
+ 
  void Init_DAC(void)
  {
 	 SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; // Connecting clock to PORTB
