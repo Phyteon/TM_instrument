@@ -34,7 +34,12 @@ uint8_t pow2(uint8_t pow)
 	}
 	return ans;
 }
- 
+
+uint8_t get_data(void)
+{
+	return data;
+}
+
 void Ps2_comm_init(void){
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; // Connecting clock to PORTB
 	// Valid signal on data line occurs on low level of CLK, that's why interrupt is also set to logic zero

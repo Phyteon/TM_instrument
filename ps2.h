@@ -31,5 +31,10 @@ void PORTB_IRQHandler(void);
 	*/
 uint8_t pow2(uint8_t);
 
+/**
+	* @brief Function for conveying received data to other functions 
+	*/
+uint8_t get_data(void);
+
 
 #endif /* PS2_H */
