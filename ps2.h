@@ -36,5 +36,15 @@ uint8_t pow2(uint8_t);
 	*/
 uint8_t get_data(void);
 
+/**
+	* @brief Identifier function returning 1 if received data is stable 
+	*/
+uint8_t chck_if_dat_rdy(void);
+
+/**
+	* @brief Function handling data buffer
+	*/
+void dat_buff_handler(void);
+
 
 #endif /* PS2_H */

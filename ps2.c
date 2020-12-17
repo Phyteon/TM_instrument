@@ -18,10 +18,38 @@
 #define DATA_LINE 7
 #define DATA_FRAME_SIZE 11
 #define PARITY_BIT_POS 9
+#define DATA_BUFFER_SIZE 10
 
 static uint8_t data_frame[DATA_FRAME_SIZE]; // #TODO: Try to enclose this in a structure for readability
 static uint8_t data;
 static uint8_t bit_idx;
+static uint8_t data_ready;
+static uint8_t data_buffer[DATA_BUFFER_SIZE];
+static uint8_t data_buffer_offset = 0;
+
+void dat_buff_handler(void)
+{
+	if(data_buffer_offset == 0)
+	{
+		if(*(data_buffer+DATA_BUFFER_SIZE-1) != data)
+		{
+			*(data_buffer) = data;
+			data_buffer_offset++;
+		}
+	}
+	else
+	{
+		if(data_buffer_offset<DATA_BUFFER_SIZE)
+		{
+			if(data != *(data_buffer+data_buffer_offset-1))
+			{
+			*(data_buffer + data_buffer_offset) = data;
+			data_buffer_offset++;
+			}
+		}
+		else data_buffer_offset = 0;
+	}
+}
 
 uint8_t pow2(uint8_t pow)
 {
@@ -33,6 +61,11 @@ uint8_t pow2(uint8_t pow)
 		ans *= 2;
 	}
 	return ans;
+}
+
+uint8_t chck_if_dat_rdy(void)
+{
+	return data_ready;
 }
 
 uint8_t get_data(void)
@@ -61,6 +94,7 @@ void PORTB_IRQHandler(void){
 			data += *(data_frame+i) * pow2(i-1);
 		}
 		bit_idx = 0;
+		data_ready = 1;
 	}
 	else
 	{
@@ -70,6 +104,7 @@ void PORTB_IRQHandler(void){
 		}
 		else *(data_frame+bit_idx) = 0;
 		bit_idx++;
+		data_ready = 0;
 	}
  }
 
