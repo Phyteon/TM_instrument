@@ -427,6 +427,11 @@
               <FileType>5</FileType>
               <FilePath>.\const_dat_file.h</FilePath>
             </File>
+            <File>
+              <FileName>dat_prep.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dat_prep.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
