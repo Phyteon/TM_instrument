@@ -65,6 +65,6 @@
    0x33, // H
    0x3B // J
  };
- // Other keys will be added, the order of the make codes should be adjusted so that the most used keys are first
+ // Other keys will be added, the order of the make codes should be adjusted so that the most used keys are firstom
  #endif /* CONST_DAT_FILE_H */
  

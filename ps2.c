@@ -93,6 +93,7 @@ void PORTB_IRQHandler(void){
 		{
 			data += *(data_frame+i) * pow2(i-1);
 		}
+		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
 		data_ready = 1;
 	}
