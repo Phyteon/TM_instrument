@@ -2,7 +2,7 @@
 *This file is a part of TM2 project which goal is to create a musical instrument.*
 ******************************************************************************************************/
 /**
- * @file dac.h
+ * @file dac.c
  * @author Pawelec, Skomiał
  * @date Dec 2020
  * @brief File containing enums, structures and declarations for DAC module.
