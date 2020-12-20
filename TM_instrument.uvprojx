@@ -402,6 +402,11 @@
               <FileType>1</FileType>
               <FilePath>.\dac.c</FilePath>
             </File>
+            <File>
+              <FileName>dat_prep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dat_prep.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

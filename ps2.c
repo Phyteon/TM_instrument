@@ -73,7 +73,8 @@ uint8_t get_data(void)
 	return data;
 }
 
-void Ps2_comm_init(void){
+void Ps2_comm_init(void)
+	{
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; // Connecting clock to PORTB
 	// Valid signal on data line occurs on low level of CLK, that's why interrupt is also set to logic zero
 	PORTB->PCR[CLK_PIN] |= PORT_PCR_MUX(1) | PORT_PCR_IRQC(8) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function, interrupts on logic zero and pullup
@@ -84,7 +85,9 @@ void Ps2_comm_init(void){
 	NVIC_EnableIRQ(PORTB_IRQn); // Enabling interrupts from PORTB
  }
  
-void PORTB_IRQHandler(void){
+ 
+void PORTB_IRQHandler(void)
+	{
 	if(bit_idx == DATA_FRAME_SIZE)
 	{
 		data = 0;
@@ -107,6 +110,10 @@ void PORTB_IRQHandler(void){
 		bit_idx++;
 		data_ready = 0;
 	}
+ }
+uint8_t * get_dat_buff(void)
+ {
+	 return data_buffer;
  }
 
  

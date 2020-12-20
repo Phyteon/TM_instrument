@@ -46,5 +46,9 @@ uint8_t chck_if_dat_rdy(void);
 	*/
 void dat_buff_handler(void);
 
+/**
+	* @brief Function returning pointer to buffer array
+	*/
+uint8_t* get_dat_buff(void);
 
 #endif /* PS2_H */
