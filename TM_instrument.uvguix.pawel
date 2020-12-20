@@ -93,8 +93,8 @@
       <flags>2</flags>
       <showCmd>3</showCmd>
       <MinPosition>
-        <xPos>-32000</xPos>
-        <yPos>-32000</yPos>
+        <xPos>-1</xPos>
+        <yPos>-1</yPos>
       </MinPosition>
       <MaxPosition>
         <xPos>-1</xPos>
@@ -1865,7 +1865,7 @@
       <ActiveTab>5</ActiveTab>
       <Doc>
         <Name>.\main.c</Name>
-        <ColumnNumber>7</ColumnNumber>
+        <ColumnNumber>13</ColumnNumber>
         <TopLine>1</TopLine>
         <CurrentLine>27</CurrentLine>
         <Folding>1</Folding>
@@ -1884,7 +1884,7 @@
       <Doc>
         <Name>.\ps2.c</Name>
         <ColumnNumber>28</ColumnNumber>
-        <TopLine>23</TopLine>
+        <TopLine>7</TopLine>
         <CurrentLine>114</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders>30,54,66,71,76</ContractedFolders>
@@ -1893,7 +1893,7 @@
       <Doc>
         <Name>.\const_dat_file.h</Name>
         <ColumnNumber>21</ColumnNumber>
-        <TopLine>4</TopLine>
+        <TopLine>2234</TopLine>
         <CurrentLine>2279</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
@@ -1910,9 +1910,9 @@
       </Doc>
       <Doc>
         <Name>.\dat_prep.c</Name>
-        <ColumnNumber>44</ColumnNumber>
+        <ColumnNumber>30</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>14</CurrentLine>
+        <CurrentLine>41</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

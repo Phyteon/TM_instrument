@@ -17,7 +17,7 @@
  /**
 	* @brief This function decodes data stored in data buffer
  */
- uint8_t decode_keys(void);
+ uint8_t *decode_keys(void);
  
  #endif /* DAT_PREP_H */
  
