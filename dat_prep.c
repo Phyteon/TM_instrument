@@ -11,7 +11,8 @@
  
  #include "dat_prep.h"
  #define DAT_BUFF_SIZE 10
- static uint8_t idx_of_track[DAT_BUFF_SIZE];
+ #define BASE_SHIFT (uint8_t)0x15
+ static uint8_t idx_of_track_arr[DAT_BUFF_SIZE];
  static uint8_t key_make_code[DAT_BUFF_SIZE];
  static uint8_t array_idx = 0;
  static uint8_t recently_released; // Used for storing index of recently released key in idx_of_track array ?????
@@ -26,14 +27,24 @@
 	 volatile uint8_t idx = 0;
 	 for (idx; idx<DAT_BUFF_SIZE; idx++) // Iterating over data buffer
 	 {
-			volatile uint8_t i = 0;
-			for(i; i < NR_OF_KEYS; i++) // Iterating over saved make codes of keys
-			{
+		 volatile uint8_t buf_read_val = *(buff + idx);
+		 if((buf_read_val > 0x0F) && (buf_read_val < 0x60)) // Checking if received make code is in designated scope
+				{
+					volatile uint8_t idx_of_track;
+					volatile uint8_t shift = buf_read_val & 0xF0; // Zeroing lower nibble
+					shift = shift / 0x10; // Shifting older nibble to younger nibble
+					shift -= 1;
+					shift *= 2; // Final shift coefficient for array idx
+					idx_of_track = buf_read_val - BASE_SHIFT - shift; // Calculate the final idx
+					
+					
+					
+					// FINISHED HERE TODAY------------------------------------------------------------------------------------------------------------------
 				if(idx+1 < DAT_BUFF_SIZE) // For ensuring correct scope of indices in array
 				{
-					if((*(make_codes + i) == *(buff + idx)) && (*(buff + idx + 1) != 0xF0)) // Check if read data is not break code
+					if(*(buff + idx + 1) != 0xF0) // Check if read data is not break code
 					{
-						*(idx_of_track + array_idx) = i; // Save idx of related music
+						*(idx_of_track_arr + array_idx) = idx_of_track; // Save idx of related music
 						*(key_make_code + array_idx) = *(buff + idx); // Copying make code for reference for quick delete of related music idx
 						array_idx++;
 						*(buff + idx) = 0; // Deleting data from data buffer
@@ -87,3 +98,4 @@
 	}
 	 return idx_of_track;
  }
+
