@@ -14,12 +14,38 @@
  #define BASE_SHIFT (uint8_t)0x15
  static uint8_t idx_of_track_arr[DAT_BUFF_SIZE];
  static uint8_t key_make_code[DAT_BUFF_SIZE];
- static uint8_t array_idx = 0;
- static uint8_t recently_released; // Used for storing index of recently released key in idx_of_track array ?????
+ static uint8_t stack_ptr; // Used for idx stack operation
+ static uint8_t track_available_idx_stack[DAT_BUFF_SIZE]; // Used for storing index of recently released key in idx_of_track array ?????
  
  // #TODO: make sure that make and break codes of unused keys do not interfere with the rest of the keys
  // #TODO: fix indexing of idx_of_track array !!!!!!!!!!!!!
  // #TODO: delete break code data from array => Done
+ 
+ void init_array(void)
+ {
+	 volatile uint8_t i = 0;
+	 for(i; i< DAT_BUFF_SIZE; i++)
+	 {
+		 idx_of_track_arr[i] = 0xFF; // 0xFF indicates that given array position is not used
+		 key_make_code[i] = 0xFF; // Same as above (make codes equal or above 0x60 are not used)
+		 track_available_idx_stack[i] = i; // Pushing available spots of array on stack
+	 }
+	 stack_ptr = i; // pesudo pointer to stack top
+ }
+ 
+ uint8_t get_idx_from_stack(void)
+ {
+	 volatile uint8_t temp = track_available_idx_stack[stack_ptr];
+	 stack_ptr--; // Point to next available index
+	 return temp;
+ }
+ 
+ void push_idx_to_stack(uint8_t index)
+ {
+	 if(stack_ptr<(DAT_BUFF_SIZE-1))
+	 stack_ptr++;
+	 track_available_idx_stack[stack_ptr] = index;
+ }
  
  uint8_t *decode_keys(void)
  {
@@ -36,66 +62,60 @@
 					shift -= 1;
 					shift *= 2; // Final shift coefficient for array idx
 					idx_of_track = buf_read_val - BASE_SHIFT - shift; // Calculate the final idx
-					
-					
-					
-					// FINISHED HERE TODAY------------------------------------------------------------------------------------------------------------------
-				if(idx+1 < DAT_BUFF_SIZE) // For ensuring correct scope of indices in array
-				{
-					if(*(buff + idx + 1) != 0xF0) // Check if read data is not break code
+					if(idx+1 < DAT_BUFF_SIZE) // For ensuring correct scope of indices in array
 					{
-						*(idx_of_track_arr + array_idx) = idx_of_track; // Save idx of related music
-						*(key_make_code + array_idx) = *(buff + idx); // Copying make code for reference for quick delete of related music idx
-						array_idx++;
-						*(buff + idx) = 0; // Deleting data from data buffer
-						break; // Not iterating further through key make codes
-					}
-					else if((*(make_codes + i) == *(buff + idx)) && (*(buff + idx + 1) == 0xF0)) // Check if read data is break code
-					{
-						*(buff + idx) = 0; // Deleting data from data buffer
-						*(buff + idx + 1) = 0; // Deleting brake code identifier
-						volatile uint8_t k = 0;
-						for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
+						if(*(buff + idx + 1) != 0xF0) // Check if read data is not break code
 						{
-							if(*(key_make_code+k) == *(make_codes + i))
+							uint8_t temp = get_idx_from_stack();
+							idx_of_track_arr[temp] = idx_of_track; // Save idx of related music
+							key_make_code[temp] = buf_read_val; // Copying make code for reference for quick delete of related music idx
+							buff[idx] = 0; // Deleting data from data buffer
+						}
+						else if(*(buff + idx + 1) == 0xF0) // Check if read data is break code
+						{
+							buff[idx] = 0; // Deleting data from data buffer
+							buff[idx + 1]= 0; // Deleting brake code identifier
+							volatile uint8_t k = 0;
+							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
 							{
-								*(idx_of_track + k) = 0xFF; // Writing 255 to indicate that idx related key was released
-								*(key_make_code + k) = 0; // Deleting associated make code from quick reference make code array
-								//recently_released = k;
-								break; // Not iterating further through quick reference make code array
+								if(key_make_code[k] == buf_read_val)
+								{
+									idx_of_track_arr[k] = 0xFF; // Writing 255 to indicate that idx related key was released
+									key_make_code[k] = 0xFF; // Deleting associated make code from quick reference make code array
+									push_idx_to_stack(k);
+									break; // Not iterating further through quick reference make code array
+								}
+							}
+						}
+					}
+					else // For ensuring correct scope of indices in array
+					{
+						if(*(buff) != 0xF0) //  Check if read data is not break code
+						{
+							uint8_t temp = get_idx_from_stack();
+							idx_of_track_arr[temp] = idx_of_track; // Save idx of related music
+							key_make_code[temp] = buf_read_val; // Copying make code for reference for quick delete of related music idx
+							buff[idx] = 0; // Deleting data from data buffer
+						}
+						else if(*(buff) == 0xF0) // Check if read data is break code
+						{
+							buff[idx] = 0; // Deleting data from data buffer
+							buff[idx + 1]= 0; // Deleting brake code identifier
+							volatile uint8_t k = 0;
+							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
+							{
+								if(key_make_code[k] == buf_read_val)
+								{
+									idx_of_track_arr[k] = 0xFF; // Writing 255 to indicate that idx related key was released
+									key_make_code[k] = 0xFF; // Deleting associated make code from quick reference make code array
+									push_idx_to_stack(k);
+									break; // Not iterating further through quick reference make code array
+								}
 							}
 						}
 					}
 				}
-				else // For ensuring correct scope of indices in array
-				{
-					if((*(make_codes + i) == *(buff + idx)) && (*(buff) != 0xF0)) //  Check if read data is not break code
-					{
-						*(idx_of_track + array_idx) = i; // Save idx of related music
-						*(key_make_code + array_idx) = *(buff + idx); // Copying make code for reference for quick delete of related music idx
-						array_idx++;
-						*(buff + idx) = 0; // Deleting data from data buffer
-						break; // Not iterating further through key make codes
-					}
-					else if((*(make_codes + i) == *(buff + idx)) && (*(buff) == 0xF0)) // Check if read data is break code
-					{
-						*(buff + idx) = 0; // Deleting data from data buffer
-						*(buff) = 0; // Deleting brake code identifier
-						volatile uint8_t k = 0;
-						for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
-						{
-							if(*(key_make_code+k) == *(make_codes + i))
-							{
-								*(idx_of_track + k) = 0xFF; // Writing 255 to indicate that idx related key was released
-								*(key_make_code + k) = 0; // Deleting associated make code from quick reference make code array
-								//recently_released = k;
-								break; // Not iterating further through quick reference make code array
-							}
-						}
-					}
-				}
-			}
-	}
-	 return idx_of_track;
+		}
+	 return idx_of_track_arr;
  }
 

@@ -19,5 +19,17 @@
  */
  uint8_t *decode_keys(void);
  
- #endif /* DAT_PREP_H */
+ /**
+ * @brief This function initialises heather file specific arrays, to be used once
+ */
+ void init_array(void);
+ /**
+ * @brief This function returns available array idx from stack
+ */
+ uint8_t get_idx_from_stack(void);
+ /**
+ * @brief This function pushes released idx to stack
+ */
+ void push_idx_to_stack(uint8_t);
  
+ #endif /* DAT_PREP_H */
