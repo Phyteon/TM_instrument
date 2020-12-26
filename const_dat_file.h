@@ -17,7 +17,7 @@
  
  #ifndef CONST_DAT_FILE_H
  #define CONST_DAT_FILE_H
-
+ // #TODO: Place sample arrays at the correct indices, add dummy arrays
  static const uint8_t sounds[NR_OF_SOUNDS][NR_OF_SAMPLES] = 
  {
 {0x82, 0xa9, 0xd0, 0xf2, 0xff, 0xff, 0xff, 0xff, 0xff, 
