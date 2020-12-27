@@ -23,8 +23,9 @@
 	 DAC0->C0 |= DAC_C0_DACEN_MASK; // Enabling DAC module
  }
  
- void convert(uint8_t dat)
+ void convert(uint8_t datl, uint8_t dath)
  {
-	 DAC0->DAT->DATL = dat;
+	 DAC0->DAT->DATL = datl;
+	 DAC0->DAT->DATH = dath;
  }
  
