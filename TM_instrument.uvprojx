@@ -407,6 +407,11 @@
               <FileType>1</FileType>
               <FilePath>.\dat_prep.c</FilePath>
             </File>
+            <File>
+              <FileName>dsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dsp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -436,6 +441,11 @@
               <FileName>dat_prep.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\dat_prep.h</FilePath>
+            </File>
+            <File>
+              <FileName>dsp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dsp.h</FilePath>
             </File>
           </Files>
         </Group>
