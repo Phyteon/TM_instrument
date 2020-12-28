@@ -1,0 +1,243 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.32.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Filip Pawelec, AGH University of Science and Technology, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.32.0.0
+Toolchain Path:  D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.14.1
+Assembler:       Armasm.exe V6.14.1
+Linker/Locator:  ArmLink.exe V6.14.1
+Library Manager: ArmAr.exe V6.14.1
+Hex Converter:   FromElf.exe V6.14.1
+CPU DLL:         SARMCM3.DLL V5.32.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.4.0
+Target DLL:      UL2CM3.DLL V1.163.9.0
+Dialog DLL:      TARMCM1.DLL V1.14.3.0
+ 
+<h2>Project:</h2>
+C:\Users\pawel\Documents\GitHub\TM_instrument\TM_instrument.uvprojx
+Project File Date:  12/27/2020
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.14.1', folder: 'D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+assembling startup_MKL05Z4.s...
+compiling ps2.c...
+ftfa.c(16): warning: implicit declaration of function 'FTFA_FSTAT_CCIF' is invalid in C99 [-Wimplicit-function-declaration]
+        FTFA->FSTAT |= FTFA_FSTAT_CCIF(0);      // Flash command in progress
+                       ^
+1 warning generated.
+compiling ftfa.c...
+dsp.c(11): warning: In file included from...
+./dsp.h(14): warning: In file included from...
+./dat_prep.h(15): warning: In file included from...
+./const_dat_file.h(114): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (2)
+^
+./const_dat_file.h(115): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (3)
+^
+./const_dat_file.h(116): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (4)
+^
+./const_dat_file.h(623): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (16)
+^
+./const_dat_file.h(624): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (17)
+^
+./const_dat_file.h(625): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (18)
+^
+./const_dat_file.h(1132): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (30)
+^
+./const_dat_file.h(1133): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (31)
+^
+./const_dat_file.h(1134): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (32)
+^
+./const_dat_file.h(1641): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (44)
+^
+./const_dat_file.h(1642): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (45)
+^
+./const_dat_file.h(1919): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (52)
+^
+./const_dat_file.h(1966): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, //Dummy array for indexing (54)
+^
+./const_dat_file.h(2059): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (57)
+^
+./const_dat_file.h(2060): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (58)
+^
+./const_dat_file.h(2061): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (59)
+^
+./const_dat_file.h(2200): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (63)
+^
+17 warnings generated.
+compiling dsp.c...
+compiling system_MKL05Z4.c...
+compiling dac.c...
+dat_prep.c(12): warning: In file included from...
+./dat_prep.h(15): warning: In file included from...
+./const_dat_file.h(114): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (2)
+^
+./const_dat_file.h(115): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (3)
+^
+./const_dat_file.h(116): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (4)
+^
+./const_dat_file.h(623): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (16)
+^
+./const_dat_file.h(624): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (17)
+^
+./const_dat_file.h(625): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (18)
+^
+./const_dat_file.h(1132): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (30)
+^
+./const_dat_file.h(1133): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (31)
+^
+./const_dat_file.h(1134): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (32)
+^
+./const_dat_file.h(1641): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (44)
+^
+./const_dat_file.h(1642): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (45)
+^
+./const_dat_file.h(1919): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (52)
+^
+./const_dat_file.h(1966): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, //Dummy array for indexing (54)
+^
+./const_dat_file.h(2059): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (57)
+^
+./const_dat_file.h(2060): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (58)
+^
+./const_dat_file.h(2061): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (59)
+^
+./const_dat_file.h(2200): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (63)
+^
+17 warnings generated.
+compiling dat_prep.c...
+main.c(13): warning: In file included from...
+./dsp.h(14): warning: In file included from...
+./dat_prep.h(15): warning: In file included from...
+./const_dat_file.h(114): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (2)
+^
+./const_dat_file.h(115): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (3)
+^
+./const_dat_file.h(116): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (4)
+^
+./const_dat_file.h(623): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (16)
+^
+./const_dat_file.h(624): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (17)
+^
+./const_dat_file.h(625): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (18)
+^
+./const_dat_file.h(1132): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (30)
+^
+./const_dat_file.h(1133): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (31)
+^
+./const_dat_file.h(1134): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (32)
+^
+./const_dat_file.h(1641): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (44)
+^
+./const_dat_file.h(1642): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (45)
+^
+./const_dat_file.h(1919): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (52)
+^
+./const_dat_file.h(1966): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, //Dummy array for indexing (54)
+^
+./const_dat_file.h(2059): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (57)
+^
+./const_dat_file.h(2060): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (58)
+^
+./const_dat_file.h(2061): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (59)
+^
+./const_dat_file.h(2200): warning: use of GNU empty initializer extension [-Wgnu-empty-initializer]
+{}, // Dummy array for indexing (63)
+^
+17 warnings generated.
+compiling main.c...
+linking...
+.\Objects\TM_instrument.axf: Error: L6218E: Undefined symbol FTFA_FSTAT_CCIF (referred from ftfa.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Objects\TM_instrument.axf" - 1 Error(s), 52 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.Kinetis_KLxx_DFP.1.15.0.pack
+                Keil.Kinetis_KLxx_DFP.1.15.0
+                NXP Kinetis KLxx Series Device Support and Examples
+   * Component: Startup Version: 1.0.0
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  D:\Tools\Keil_u_vision\Pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  D:\Tools\Keil_u_vision\Pack\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+
+   * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\system_MKL05Z4.c
+      Source file:   Device\Source\ARM\startup_MKL05Z4.s
+Target not created.
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
