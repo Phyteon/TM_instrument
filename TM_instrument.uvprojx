@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6140001::V6.14.1::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -393,11 +394,6 @@
               <FilePath>.\ps2.c</FilePath>
             </File>
             <File>
-              <FileName>ftfa.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ftfa.c</FilePath>
-            </File>
-            <File>
               <FileName>dac.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dac.c</FilePath>
@@ -412,6 +408,11 @@
               <FileType>1</FileType>
               <FilePath>.\dsp.c</FilePath>
             </File>
+            <File>
+              <FileName>pit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\pit.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -421,11 +422,6 @@
               <FileName>ps2.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\ps2.h</FilePath>
-            </File>
-            <File>
-              <FileName>ftfa.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ftfa.h</FilePath>
             </File>
             <File>
               <FileName>dac.h</FileName>
@@ -446,6 +442,11 @@
               <FileName>dsp.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\dsp.h</FilePath>
+            </File>
+            <File>
+              <FileName>pit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pit.h</FilePath>
             </File>
           </Files>
         </Group>
