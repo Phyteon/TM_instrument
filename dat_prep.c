@@ -30,7 +30,7 @@
 		 key_make_code[i] = 0xFF; // Same as above (make codes equal or above 0x60 are not used)
 		 track_available_idx_stack[i] = i; // Pushing available spots of array on stack
 	 }
-	 stack_ptr = i; // pesudo pointer to stack top
+	 stack_ptr = i-1; // pesudo pointer to stack top
  }
  
  uint8_t get_idx_from_stack(void)

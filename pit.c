@@ -14,6 +14,7 @@
  static uint8_t * tune_idx_arr;
  void PIT_init(void)
  {
+	 SIM->SCGC6 |= SIM_SCGC6_PIT_MASK;
 	 PIT->MCR |= PIT_MCR_MDIS_MASK | PIT_MCR_FRZ_MASK; // Disabling module before further setup and allowing freezing of timers in debug mode (docs page 536)
 	 PIT->CHANNEL[0].LDVAL |= COUNTER_CONST_VAL; // Loading pre-calculated value to LDVAL to obtain 4060 Hz interrupt frequency (for playing sounds)
 	 PIT->CHANNEL[0].TCTRL |= PIT_TCTRL_TIE_MASK | PIT_TCTRL_TEN_MASK; // Allowing generation of interrupts and enabling individual counter
