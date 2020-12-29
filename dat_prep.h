@@ -17,7 +17,7 @@
  /**
 	* @brief This function decodes data stored in data buffer
  */
- uint8_t *decode_keys(void);
+ void decode_keys(void);
  
  /**
  * @brief This function initialises heather file specific arrays, to be used once
@@ -31,5 +31,9 @@
  * @brief This function pushes released idx to stack
  */
  void push_idx_to_stack(uint8_t);
+ /**
+ * @brief This function returns pointer to array containing tune idx
+ */
+ uint8_t * get_tune_idx_arr(void);
  
  #endif /* DAT_PREP_H */

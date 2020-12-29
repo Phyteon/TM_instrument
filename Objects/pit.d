@@ -1,4 +1,4 @@
-./objects/main.o: main.c pit.h dsp.h dat_prep.h const_dat_file.h \
+./objects/pit.o: pit.c pit.h dsp.h dat_prep.h const_dat_file.h \
   D:\Tools\Keil_u_vision\Pack\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h \
   D:\Tools\Keil_u_vision\Pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0plus.h \
   D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin\..\include\stdint.h \

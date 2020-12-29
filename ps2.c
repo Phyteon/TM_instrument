@@ -81,7 +81,7 @@ void Ps2_comm_init(void)
 	PORTB->PCR[DATA_LINE] |= PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function and pullup
 	
 	NVIC_ClearPendingIRQ(PORTB_IRQn);
-	NVIC_SetPriority(PORTB_IRQn, 3); // Setting interrupt priority level #TODO - check if priority is correct (should be highest priority)
+	NVIC_SetPriority(PORTB_IRQn, 0); // Setting interrupt priority level #TODO - check if priority is correct (should be highest priority)
 	NVIC_EnableIRQ(PORTB_IRQn); // Enabling interrupts from PORTB
  }
  

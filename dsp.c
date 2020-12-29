@@ -11,8 +11,6 @@
  #include "dsp.h"
  #define DAT_BUFF_SIZE 10
  static uint16_t sample_counter = 0;
- // Below function only adds corresponding samples to each other, sample_counter should be
- // changed externally in clock generated interrupt using according functions
  void assemble_samples(uint8_t* idx_array)
  {
 	 volatile uint16_t final_samp = 0;
@@ -28,6 +26,8 @@
 	 }
 	 final_samp_l = (uint8_t)(final_samp & 0xFF);
 	 final_samp_h = (uint8_t)((final_samp & 0xFF00)/0x0F);
+	 if(sample_counter == NR_OF_SAMPLES - 1) sample_counter = 0;
+	 else sample_counter++;
 	 convert(final_samp_l, final_samp_h);
  }
 

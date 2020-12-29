@@ -47,7 +47,12 @@
 	 track_available_idx_stack[stack_ptr] = index;
  }
  
- uint8_t *decode_keys(void)
+ uint8_t *get_tune_idx_arr(void)
+ {
+	 return idx_of_track_arr;
+ }
+ 
+ void decode_keys(void)
  {
 	 uint8_t * buff = get_dat_buff(); // Getting pointer to data buffer
 	 volatile uint8_t idx = 0;
@@ -116,6 +121,5 @@
 					}
 				}
 		}
-	 return idx_of_track_arr;
  }
 
