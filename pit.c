@@ -9,8 +9,11 @@
  * @ver 0.1
  */
  
+ 
  #include "pit.h"
+ 
  #define COUNTER_CONST_VAL 10331
+ 
  static uint8_t * tune_idx_arr;
  void PIT_init(void)
  {

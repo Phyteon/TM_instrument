@@ -8,8 +8,12 @@
  * @brief File containing definitions of functions, structures and enums for final data prep for DAC
  * @ver 0.1
  */
+ 
+ 
  #include "dsp.h"
+ 
  #define DAT_BUFF_SIZE 10
+ 
  static uint16_t sample_counter = 0;
  void assemble_samples(uint8_t* idx_array)
  {

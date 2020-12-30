@@ -10,10 +10,12 @@
  */
  
 
- #ifndef DAT_PREP_H
- #define DAT_PREP_H
  #include "const_dat_file.h"
  #include "ps2.h"
+ 
+ #ifndef DAT_PREP_H
+ #define DAT_PREP_H
+
  /**
 	* @brief This function decodes data stored in data buffer
  */

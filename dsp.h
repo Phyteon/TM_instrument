@@ -9,10 +9,13 @@
  * @ver 0.1
  */
  
- #ifndef DSP_H
- #define DSP_H
+ 
  #include "dat_prep.h"
  #include "dac.h"
+
+ #ifndef DSP_H
+ #define DSP_H
+
  /**
  * @brief This function adds samples before sending them to DAC
  */

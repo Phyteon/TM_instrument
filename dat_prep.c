@@ -9,9 +9,12 @@
  * @ver 0.1
  */
  
+ 
  #include "dat_prep.h"
+ 
  #define DAT_BUFF_SIZE 10
  #define BASE_SHIFT (uint8_t)0x15
+ 
  static uint8_t idx_of_track_arr[DAT_BUFF_SIZE];
  static uint8_t key_make_code[DAT_BUFF_SIZE];
  static uint8_t stack_ptr; // Used for idx stack operation

@@ -9,9 +9,12 @@
  * @ver 0.1
  */
  
+ 
+ #include "dsp.h"
+ 
  #ifndef PIT_H
  #define PIT_H
- #include "dsp.h"
+
  /**
  * @brief This function initalises PIT timer
  */

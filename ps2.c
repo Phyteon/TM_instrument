@@ -10,9 +10,7 @@
  */
  
  
- 
 #include "ps2.h"
-
 
 #define CLK_PIN 6
 #define DATA_LINE 7
