@@ -20,16 +20,17 @@
 
 static uint8_t data_frame[DATA_FRAME_SIZE]; // #TODO: Try to enclose this in a structure for readability
 static uint8_t data;
-static uint8_t bit_idx;
-static uint8_t data_ready;
-static uint8_t data_buffer[DATA_BUFFER_SIZE];
-static uint8_t data_buffer_offset = 0;
+static uint8_t bit_idx; // For monitoring current bit of data frame
+static uint8_t data_ready; // Marker indicating that whole data frame has been received and data got decoded
+static uint8_t data_buffer[DATA_BUFFER_SIZE]; // Buffer for data
+static uint8_t data_buffer_offset = 0; // For indexing data buffer
 
+// Data buffer is "round". Because of this, in data preprocessing we have to check special clauses
 void dat_buff_handler(void)
 {
-	if(data_buffer_offset == 0)
+	if(data_buffer_offset == 0) // Make sure that previously received data is different
 	{
-		if(*(data_buffer+DATA_BUFFER_SIZE-1) != data)
+		if(*(data_buffer+DATA_BUFFER_SIZE-1) != data) 
 		{
 			*(data_buffer) = data;
 			data_buffer_offset++;
@@ -86,19 +87,19 @@ void Ps2_comm_init(void)
  
 void PORTB_IRQHandler(void)
 	{
-	if(bit_idx == DATA_FRAME_SIZE)
+	if(bit_idx == DATA_FRAME_SIZE) // If received whole data frame
 	{
 		data = 0;
 		volatile uint8_t i = 1;
 		for (i; i < PARITY_BIT_POS; i++)
 		{
-			data += *(data_frame+i) * pow2(i-1);
+			data += *(data_frame+i) * pow2(i-1); // Decode received data
 		}
 		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
 		data_ready = 1;
 	}
-	else
+	else // Save incoming bits of transmission
 	{
 		if((PTB->PDIR & 1<<DATA_LINE) == 1<<DATA_LINE)
 		{
