@@ -78,7 +78,7 @@ void Ps2_comm_init(void)
 	// Valid signal on data line occurs on low level of CLK, that's why interrupt is also set to logic zero
 	PORTB->PCR[CLK_PIN] |= PORT_PCR_MUX(1) | PORT_PCR_IRQC(8) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function, interrupts on logic zero and pullup
 	PORTB->PCR[DATA_LINE] |= PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function and pullup
-	
+	PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK; // Resetting interrupt flag
 	NVIC_ClearPendingIRQ(PORTB_IRQn);
 	NVIC_SetPriority(PORTB_IRQn, 0); // Setting interrupt priority level #TODO - check if priority is correct (should be highest priority)
 	NVIC_EnableIRQ(PORTB_IRQn); // Enabling interrupts from PORTB
@@ -98,6 +98,7 @@ void PORTB_IRQHandler(void)
 		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
 		data_ready = 1;
+		PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
 	}
 	else // Save incoming bits of transmission
 	{
@@ -108,6 +109,7 @@ void PORTB_IRQHandler(void)
 		else *(data_frame+bit_idx) = 0;
 		bit_idx++;
 		data_ready = 0;
+		PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
 	}
  }
 uint8_t * get_dat_buff(void)
