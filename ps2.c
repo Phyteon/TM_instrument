@@ -98,15 +98,14 @@ void PORTB_IRQHandler(void)
 		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
 		data_ready = 1;
-		PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
 	}
 	else // Save incoming bits of transmission
 	{
 		data_frame[bit_idx] = ((PTB->PDIR) & (1<<DATA_LINE))>>DATA_LINE;
 		bit_idx++;
 		data_ready = 0;
-		PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
 	}
+	PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
  }
 uint8_t * get_dat_buff(void)
  {
