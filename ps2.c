@@ -102,11 +102,7 @@ void PORTB_IRQHandler(void)
 	}
 	else // Save incoming bits of transmission
 	{
-		if((PTB->PDIR & 1<<DATA_LINE) == 1<<DATA_LINE)
-		{
-			*(data_frame+bit_idx) = 1;
-		}
-		else *(data_frame+bit_idx) = 0;
+		data_frame[bit_idx] = ((PTB->PDIR) & (1<<DATA_LINE))>>DATA_LINE;
 		bit_idx++;
 		data_ready = 0;
 		PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK;
