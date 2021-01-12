@@ -93,7 +93,7 @@ void PORTB_IRQHandler(void)
 		volatile uint8_t i = 1;
 		for (i; i < PARITY_BIT_POS; i++)
 		{
-			data += *(data_frame+i) * pow2(i-1); // Decode received data
+			data += data_frame[i]<<(i-1); // Decode received data
 		}
 		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
