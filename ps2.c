@@ -76,7 +76,7 @@ void Ps2_comm_init(void)
 	{
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; // Connecting clock to PORTB
 	// Valid signal on data line occurs on low level of CLK, that's why interrupt is also set to logic zero
-	PORTB->PCR[CLK_PIN] |= PORT_PCR_MUX(1) | PORT_PCR_IRQC(8) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function, interrupts on logic zero and pullup
+	PORTB->PCR[CLK_PIN] |= PORT_PCR_MUX(1) | PORT_PCR_IRQC(9) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function, interrupts on logic zero and pullup
 	PORTB->PCR[DATA_LINE] |= PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK; // Selecting appropriate pin function and pullup
 	PORTB->PCR[CLK_PIN] |= PORT_PCR_ISF_MASK; // Resetting interrupt flag
 	NVIC_ClearPendingIRQ(PORTB_IRQn);
@@ -87,8 +87,9 @@ void Ps2_comm_init(void)
  
 void PORTB_IRQHandler(void)
 	{
-	if(bit_idx == DATA_FRAME_SIZE) // If received whole data frame
+	if(bit_idx == DATA_FRAME_SIZE-1) // If received whole data frame
 	{
+		data_frame[bit_idx] = ((PTB->PDIR) & (1<<DATA_LINE))>>DATA_LINE;
 		data = 0;
 		volatile uint8_t i = 1;
 		for (i; i < PARITY_BIT_POS; i++)
