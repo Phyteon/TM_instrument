@@ -51,4 +51,9 @@ void dat_buff_handler(void);
 	*/
 uint8_t* get_dat_buff(void);
 
+/**
+	* @brief Function resetting data_ready flag
+	*/
+void reset_data_rdy(void);
+
 #endif /* PS2_H */

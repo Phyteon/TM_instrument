@@ -18,10 +18,9 @@
  static uint8_t idx_of_track_arr[DAT_BUFF_SIZE];
  static uint8_t key_make_code[DAT_BUFF_SIZE];
  static uint8_t stack_ptr; // Used for idx stack operation
- static uint8_t track_available_idx_stack[DAT_BUFF_SIZE]; // Used for storing index of recently released key in idx_of_track array ?????
+ static uint8_t track_available_idx_stack[DAT_BUFF_SIZE]; // Used for storing index of recently released key in idx_of_track array
  
  // #TODO: make sure that make and break codes of unused keys do not interfere with the rest of the keys
- // #TODO: fix indexing of idx_of_track array !!!!!!!!!!!!!
  // #TODO: delete break code data from array => Done
  
  void init_array(void)
@@ -39,13 +38,13 @@
  uint8_t get_idx_from_stack(void)
  {
 	 volatile uint8_t temp = track_available_idx_stack[stack_ptr];
-	 stack_ptr--; // Point to next available index
+	 if(stack_ptr > 0) stack_ptr--; // Point to next available index
 	 return temp;
  }
  
  void push_idx_to_stack(uint8_t index)
  {
-	 if(stack_ptr<(DAT_BUFF_SIZE-1))
+	 if(stack_ptr<(DAT_BUFF_SIZE))
 	 stack_ptr++;
 	 track_available_idx_stack[stack_ptr] = index;
  }
@@ -57,6 +56,7 @@
  
  void decode_keys(void)
  {
+	 reset_data_rdy();
 	 uint8_t * buff = get_dat_buff(); // Getting pointer to data buffer
 	 volatile uint8_t idx = 0;
 	 for (idx; idx<DAT_BUFF_SIZE; idx++) // Iterating over data buffer

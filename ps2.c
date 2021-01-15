@@ -66,6 +66,11 @@ uint8_t pow2(uint8_t pow)
 	return ans;
 }
 
+void reset_data_rdy(void)
+{
+	data_ready = 0;
+}
+
 uint8_t chck_if_dat_rdy(void)
 {
 	return data_ready;
