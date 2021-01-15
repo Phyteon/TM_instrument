@@ -29,7 +29,7 @@
 		 }
 	 }
 	 final_samp_l = (uint8_t)(final_samp & 0xFF);
-	 final_samp_h = (uint8_t)((final_samp & 0xFF00)/0x0F);
+	 final_samp_h = (uint8_t)((final_samp & 0xFF00)>>8);
 	 if(sample_counter == NR_OF_SAMPLES - 1) sample_counter = 0;
 	 else sample_counter++;
 	 convert(final_samp_l, final_samp_h);

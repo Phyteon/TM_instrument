@@ -33,7 +33,7 @@
 		 key_make_code[i] = 0xFF; // Same as above (make codes equal or above 0x60 are not used)
 		 track_available_idx_stack[i] = i; // Pushing available spots of array on stack
 	 }
-	 stack_ptr = i-1; // pesudo pointer to stack top
+	 stack_ptr = DAT_BUFF_SIZE - 1; // pesudo pointer to stack top
  }
  
  uint8_t get_idx_from_stack(void)
@@ -64,7 +64,7 @@
 		 volatile uint8_t buf_read_val = *(buff + idx); // Is it possible that during this function buff array changes? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 if((buf_read_val > 0x0F) && (buf_read_val < 0x60)) // Checking if received make code is in designated scope
 				{
-					volatile uint8_t idx_of_track;
+					volatile uint8_t idx_of_track = 0xFF; // Can't show up on watch 1. Too many volatile variables?
 					volatile uint8_t shift = buf_read_val & 0xF0; // Zeroing lower nibble
 					shift = shift >> 4; // Shifting older nibble to younger nibble
 					shift -= 1;
