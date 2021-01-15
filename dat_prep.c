@@ -38,7 +38,7 @@
  
  uint8_t get_idx_from_stack(void)
  {
-	 volatile uint8_t temp = track_available_idx_stack[stack_ptr];
+	 /*volatile*/ uint8_t temp = track_available_idx_stack[stack_ptr];
 	 stack_ptr--; // Point to next available index
 	 return temp;
  }
@@ -61,11 +61,11 @@
 	 volatile uint8_t idx = 0;
 	 for (idx; idx<DAT_BUFF_SIZE; idx++) // Iterating over data buffer
 	 {
-		 volatile uint8_t buf_read_val = *(buff + idx); // Is it possible that during this function buff array changes? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		 /*volatile*/ uint8_t buf_read_val = *(buff + idx); // Is it possible that during this function buff array changes? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 if((buf_read_val > 0x0F) && (buf_read_val < 0x60)) // Checking if received make code is in designated scope
 				{
-					volatile uint8_t idx_of_track = 0xFF; // Can't show up on watch 1. Too many volatile variables?
-					volatile uint8_t shift = buf_read_val & 0xF0; // Zeroing lower nibble
+					/*volatile*/ uint8_t idx_of_track = 0xFF; // Can't show up on watch 1. Too many volatile variables?
+					/*volatile*/ uint8_t shift = buf_read_val & 0xF0; // Zeroing lower nibble
 					shift = shift >> 4; // Shifting older nibble to younger nibble
 					shift -= 1;
 					shift *= 2; // Final shift coefficient for array idx
@@ -74,7 +74,7 @@
 					{
 						if(buff[idx + 1] != 0xF0) // Check if read data is not break code
 						{
-							volatile uint8_t temp = get_idx_from_stack(); // Get available idx of idx_trac_arr from stack
+							/*volatile*/ uint8_t temp = get_idx_from_stack(); // Get available idx of idx_trac_arr from stack
 							idx_of_track_arr[temp] = idx_of_track; // Save idx of related music
 							key_make_code[temp] = buf_read_val; // Copying make code for reference for quick delete of related music idx
 							//buff[idx] = 0; // Deleting data from data buffer - Cant do that beacuse break code won't be read correctly !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
