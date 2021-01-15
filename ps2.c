@@ -30,7 +30,7 @@ void dat_buff_handler(void)
 {
 	if(data_buffer_offset == 0) // Make sure that previously received data is different
 	{
-		if(*(data_buffer+DATA_BUFFER_SIZE-1) != data) 
+		if(data_buffer[DATA_BUFFER_SIZE-1] != data) // If different, save data and increment offset 
 		{
 			*(data_buffer) = data;
 			data_buffer_offset++;
@@ -40,13 +40,17 @@ void dat_buff_handler(void)
 	{
 		if(data_buffer_offset<DATA_BUFFER_SIZE)
 		{
-			if(data != *(data_buffer+data_buffer_offset-1))
+			if(data != data_buffer[data_buffer_offset-1])
 			{
-			*(data_buffer + data_buffer_offset) = data;
+			data_buffer[data_buffer_offset] = data;
 			data_buffer_offset++;
 			}
 		}
-		else data_buffer_offset = 0;
+		else
+		{			
+			data_buffer_offset = 0; // Reset offset
+			dat_buff_handler(); // Reenter function (otherwise one byte of data would be lost)
+		}
 	}
 }
 

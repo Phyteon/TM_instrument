@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\TM_instrument.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\TM_instrument.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140101: Last Updated: Wed Jan 13 21:11:31 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140101: Last Updated: Fri Jan 15 01:28:13 2021
 <BR><P>
 <H3>Maximum Stack Usage =         52 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -24,6 +24,7 @@ Mutually Recursive functions
  <LI><a href="#[4]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[4]">PendSV_Handler</a><BR>
  <LI><a href="#[5]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5]">SysTick_Handler</a><BR>
  <LI><a href="#[15]">ADC0_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[15]">ADC0_IRQHandler</a><BR>
+ <LI><a href="#[42]">dat_buff_handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[42]">dat_buff_handler</a><BR>
 </UL>
 <P>
 <H3>
@@ -452,13 +453,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assemble_samples
 </UL>
 
-<P><STRONG><a name="[42]"></a>dat_buff_handler</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, ps2.o(.text.dat_buff_handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = dat_buff_handler
+<P><STRONG><a name="[42]"></a>dat_buff_handler</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, ps2.o(.text.dat_buff_handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + In Cycle
+<LI>Call Chain = dat_buff_handler &rArr;  dat_buff_handler (Cycle)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTB_IRQHandler
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dat_buff_handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dat_buff_handler
+<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTB_IRQHandler
 </UL>
 
-<P><STRONG><a name="[49]"></a>decode_keys</STRONG> (Thumb, 308 bytes, Stack size 48 bytes, dat_prep.o(.text.decode_keys))
+<P><STRONG><a name="[49]"></a>decode_keys</STRONG> (Thumb, 316 bytes, Stack size 48 bytes, dat_prep.o(.text.decode_keys))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = decode_keys &rArr; get_idx_from_stack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;push_idx_to_stack
