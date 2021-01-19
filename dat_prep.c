@@ -68,7 +68,7 @@
 	 //-------------------------------------------------------------------------+
 	 for (idx; idx<DAT_BUFF_SIZE; idx++) // Iterating over data buffer
 	 {
-		 buf_read_val = *(buff + idx); // Is it possible that during this function buff array changes? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		 buf_read_val = *(buff + idx); // Is it possible
 		 if((buf_read_val > 0x0F) && (buf_read_val < 0x60)) // Checking if received make code is in designated scope
 				{
 					shift = buf_read_val & 0xF0; // Zeroing lower nibble

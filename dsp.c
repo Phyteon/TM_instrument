@@ -23,15 +23,16 @@
 	 volatile uint8_t final_samp_h;
 	 for(i; i < DAT_BUFF_SIZE; i++)
 	 {
-		 if(idx_array[i] != 0xFF)
+		 if(idx_array[i] != 0xFF) // Check if index is valid
 		 {
-			 final_samp += sounds[idx_array[i]][sample_counter];
+			 final_samp += sounds[idx_array[i]][sample_counter]; // Add corresponding samples (WARNING! No sound level normalisation)
 		 }
 	 }
+	 // Dividing outcome sample into younger and older byte, beacuse DAC module does not support 16-bit access
 	 final_samp_l = (uint8_t)(final_samp & 0xFF);
 	 final_samp_h = (uint8_t)((final_samp & 0xFF00)>>8);
 	 if(sample_counter == NR_OF_SAMPLES - 1) sample_counter = 0;
-	 else sample_counter++;
+	 else sample_counter++; // Incrementing sample counter
 	 convert(final_samp_l, final_samp_h);
  }
 

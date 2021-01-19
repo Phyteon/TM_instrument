@@ -33,7 +33,8 @@ void dat_buff_handler(void)
 		if(data_buffer[DATA_BUFFER_SIZE-1] != data) // If different, save data and increment offset 
 		{
 			*(data_buffer) = data;
-			data_buffer_offset++;
+			data_buffer_offset += 1;
+			data_ready = 1;
 		}
 	}
 	else
@@ -43,7 +44,8 @@ void dat_buff_handler(void)
 			if(data != data_buffer[data_buffer_offset-1])
 			{
 			data_buffer[data_buffer_offset] = data;
-			data_buffer_offset++;
+			data_buffer_offset += 1;
+			data_ready = 1;
 			}
 		}
 		else
@@ -107,7 +109,6 @@ void PORTB_IRQHandler(void)
 		}
 		dat_buff_handler(); // Save accordingly to buffer
 		bit_idx = 0;
-		data_ready = 1;
 	}
 	else // Save incoming bits of transmission
 	{
