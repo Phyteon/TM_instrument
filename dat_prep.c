@@ -91,7 +91,6 @@
 									idx_of_track_arr[k] = 0xFF; // Writing 255 to indicate that idx related key was released
 									key_make_code[k] = 0xFF; // Deleting associated make code from quick reference make code array
 									push_idx_to_stack(k);
-									break; // Not iterating further through quick reference make code array
 								}
 							}
 						}
