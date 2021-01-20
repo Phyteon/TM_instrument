@@ -33,9 +33,10 @@
 		 }
 	 }
 	 // Dividing outcome sample into younger and older byte, beacuse DAC module does not support 16-bit access
-	 if(nr_of_keys)
-	 final_samp = normalise(final_samp, nr_of_keys);
+	 //if(nr_of_keys)
+	 //final_samp = normalise(final_samp, nr_of_keys);
 	 nr_of_keys = 0;
+	 //final_samp = final_samp >> 1;
 	 final_samp_l = (uint8_t)(final_samp & 0xFF);
 	 final_samp_h = (uint8_t)((final_samp & 0xFF00)>>8);
 	 if(sample_counter == NR_OF_SAMPLES - 1) sample_counter = 0;
