@@ -33,8 +33,8 @@
 		 }
 	 }
 	 // Dividing outcome sample into younger and older byte, beacuse DAC module does not support 16-bit access
-	 //if(nr_of_keys)
-	 //final_samp = normalise(final_samp, nr_of_keys);
+	 if(nr_of_keys)
+	 final_samp = normalise(final_samp, nr_of_keys);
 	 nr_of_keys = 0;
 	 //final_samp = final_samp >> 1;
 	 final_samp_l = (uint8_t)(final_samp & 0xFF);
@@ -58,7 +58,7 @@
  {
 	 volatile double percentage;
 	 volatile uint16_t final;
-	 percentage = sample/(nr_of_keys*0xFF);
-	 final = (uint16_t)(floor((percentage*0xFFF)));
+	 percentage = (double)sample/((double)nr_of_keys*255.0);
+	 final = (uint16_t)(floor((percentage*4095.0)));
 	 return final;
  }
