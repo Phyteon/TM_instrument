@@ -28,4 +28,9 @@
  * @brief This function sets the value of sample_counter
  */
  void set_sample_counter(uint16_t);
+  /**
+ * @brief This function normalises sound level to a 12-bit unsigned int
+ */
+ uint16_t normalise(uint16_t, uint8_t);
+ 
 #endif /* DSP_H */
