@@ -76,9 +76,9 @@
 					shift -= 1;
 					shift *= 2; // Final shift coefficient for array idx
 					idx_of_track = buf_read_val - BASE_SHIFT - shift; // Calculate the final idx
-					if(idx+1 < DAT_BUFF_SIZE) // For ensuring correct scope of indices in array
+					if(idx >= 1) // For ensuring correct scope of indices in array
 					{
-						if(buff[idx + 1] != 0xF0) // Check if read data is not break code
+						if(buff[idx - 1] != 0xF0) // Check if read data is not break code
 						{
 							temp = get_idx_from_stack(); // Get available idx of idx_trac_arr from stack
 							idx_of_track_arr[temp] = idx_of_track; // Save idx of related music
@@ -88,7 +88,7 @@
 						else // If read data is break code
 						{
 							buff[idx] = 0; // Deleting data from data buffer
-							buff[idx + 1]= 0; // Deleting brake code identifier
+							buff[idx - 1]= 0; // Deleting brake code identifier
 							k = 0;
 							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
 							{
@@ -103,17 +103,18 @@
 					}
 					else // For ensuring correct scope of indices in array
 					{
-						if(*(buff) != 0xF0) //  Check if read data is not break code
+						if(buff[DAT_BUFF_SIZE - 1] != 0xF0) //  Check if read data is not break code
 						{
 							temp = get_idx_from_stack();
 							idx_of_track_arr[temp] = idx_of_track; // Save idx of related music
 							key_make_code[temp] = buf_read_val; // Copying make code for reference for quick delete of related music idx
-							buff[idx] = 0; // Deleting data from data buffer
+							buff[0] = 0; // Deleting data from data buffer
+							buff[DAT_BUFF_SIZE - 1] = 0; // Deleting brake code identifier
 						}
-						else if(*(buff) == 0xF0) // Check if read data is break code
+						else // Check if read data is break code
 						{
-							buff[idx] = 0; // Deleting data from data buffer
-							buff[idx + 1]= 0; // Deleting brake code identifier
+							buff[0] = 0; // Deleting data from data buffer
+							buff[DAT_BUFF_SIZE - 1] = 0; // Deleting brake code identifier
 							k = 0;
 							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
 							{
