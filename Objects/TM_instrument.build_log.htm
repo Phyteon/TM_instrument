@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.32.0.0
 Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Filip Pawelec, AGH University of Science and Technology, LIC=----
+License Information: Krzysztof Skomia³, AGH University of Science and Technology, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.32.0.0
-Toolchain Path:  D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin
+Toolchain Path:  D:\Programy\Keil\Core\ARM\ARMCLANG\Bin
 C Compiler:      ArmClang.exe V6.14.1
 Assembler:       Armasm.exe V6.14.1
 Linker/Locator:  ArmLink.exe V6.14.1
@@ -21,23 +21,60 @@ Target DLL:      Segger\JL2CM3.dll V2.99.38.0
 Dialog DLL:      TARMCM1.DLL V1.14.3.0
  
 <h2>Project:</h2>
-C:\Users\pawel\Documents\GitHub\TM_instrument\TM_instrument.uvprojx
-Project File Date:  12/29/2020
+C:\Users\krzys\OneDrive\Dokumenty\GitHub\TM_instrument\TM_instrument.uvprojx
+Project File Date:  01/20/2021
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.14.1', folder: 'D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin'
-Rebuild target 'Target 1'
-compiling dac.c...
-compiling ps2.c...
-compiling pit.c...
+*** Using Compiler 'V6.14.1', folder: 'D:\Programy\Keil\Core\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+main.c(13): warning: In file included from...
+./pit.h(13): warning: In file included from...
+./dsp.h(13): warning: In file included from...
+./dat_prep.h(13): warning: In file included from...
+./const_dat_file.h(1638): warning: excess elements in array initializer
+{0x84, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfa, 
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./const_dat_file.h(2684): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+2 warnings generated.
 compiling main.c...
+pit.c(13): warning: In file included from...
+./pit.h(13): warning: In file included from...
+./dsp.h(13): warning: In file included from...
+./dat_prep.h(13): warning: In file included from...
+./const_dat_file.h(1638): warning: excess elements in array initializer
+{0x84, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfa, 
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./const_dat_file.h(2684): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+2 warnings generated.
+compiling pit.c...
+dat_prep.c(13): warning: In file included from...
+./dat_prep.h(13): warning: In file included from...
+./const_dat_file.h(1638): warning: excess elements in array initializer
+{0x84, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfa, 
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./const_dat_file.h(2684): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+2 warnings generated.
 compiling dat_prep.c...
-assembling startup_MKL05Z4.s...
-compiling system_MKL05Z4.c...
+dsp.c(13): warning: In file included from...
+./dsp.h(13): warning: In file included from...
+./dat_prep.h(13): warning: In file included from...
+./const_dat_file.h(1638): warning: excess elements in array initializer
+{0x84, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfa, 
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./const_dat_file.h(2684): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+2 warnings generated.
 compiling dsp.c...
 linking...
-Program Size: Code=1684 RO-data=26664 RW-data=0 ZI-data=416  
-".\Objects\TM_instrument.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=1684 RO-data=19744 RW-data=0 ZI-data=416  
+".\Objects\TM_instrument.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,17 +92,17 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Target_1
-  D:\Tools\Keil_u_vision\Pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include
-  D:\Tools\Keil_u_vision\Pack\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include
+  D:\Programy\Keil\Pack\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  D:\Programy\Keil\Pack\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\system_MKL05Z4.c
       Source file:   Device\Source\ARM\startup_MKL05Z4.s
-Build Time Elapsed:  00:00:04
+      Source file:   Device\Source\system_MKL05Z4.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
