@@ -90,13 +90,17 @@
 							buff[idx] = 0; // Deleting data from data buffer
 							buff[idx - 1]= 0; // Deleting brake code identifier
 							k = 0;
-							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
+							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array and data buffer
 							{
 								if(key_make_code[k] == buf_read_val)
 								{
 									idx_of_track_arr[k] = 0xFF; // Writing 255 to indicate that idx related key was released
 									key_make_code[k] = 0xFF; // Deleting associated make code from quick reference make code array
 									push_idx_to_stack(k);
+								}
+								if(buff[k] == buf_read_val)
+								{
+									buff[k] = 0; // Deleting any previous make codes of released key
 								}
 							}
 						}
@@ -116,13 +120,17 @@
 							buff[0] = 0; // Deleting data from data buffer
 							buff[DAT_BUFF_SIZE - 1] = 0; // Deleting brake code identifier
 							k = 0;
-							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array
+							for(k; k<DAT_BUFF_SIZE; k++) // Iterating over quick reference make code array and data buffer
 							{
 								if(key_make_code[k] == buf_read_val)
 								{
 									idx_of_track_arr[k] = 0xFF; // Writing 255 to indicate that idx related key was released
 									key_make_code[k] = 0xFF; // Deleting associated make code from quick reference make code array
 									push_idx_to_stack(k);
+								}
+								if(buff[k] == buf_read_val)
+								{
+									buff[k] = 0; // Deleting any previous make codes of released key
 								}
 							}
 						}
