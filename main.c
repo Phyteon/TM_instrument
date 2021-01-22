@@ -4,31 +4,32 @@
 /**
  * @file main.c
  * @author Pawelec, Skomial
- * @date Dec 2020
+ * @date Jan 2021
  * @brief File containing the main function.
  * @ver 0.1
  */
 
 
-#include "ps2.h"
-#include "dac.h"
+#include "pit.h"
+#include "adc.h"
 
 
-
- int main (void) { 
-	uint8_t data_buffer;
-	Init_DAC();
-	Ps2_comm_init();
-	while(1)
-	{
-		if(chck_if_dat_rdy())
-		{
-			data_buffer = get_data(); // Store current stable data independently in case interrupt arrives early
-			// Here decode key and action
-		}
-	}
+ int main (void) {
+	 Init_DAC(); // Initialise DAC
+	 init_array(); // Initialise arrays in dat_prep file
+	 Ps2_comm_init(); // Initalise receive from PS/2 keyboard
+	 volatile uint8_t cal;
+	 cal = init_ADC();
+	 if(cal) while(1); // If callibration failed, do not proceed
 	 
 	 
-	 
+	 PIT_init();
+	 while(1)
+	 {
+		 if(chck_if_dat_rdy())
+		 {
+			decode_keys();
+		 }
+	 }
  }
 

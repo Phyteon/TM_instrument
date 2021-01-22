@@ -9,15 +9,33 @@
  * @ver 0.1
  */
  
+
  #include "const_dat_file.h"
  #include "ps2.h"
+ 
  #ifndef DAT_PREP_H
  #define DAT_PREP_H
- 
+
  /**
 	* @brief This function decodes data stored in data buffer
  */
- uint8_t *decode_keys(void);
+ void decode_keys(void);
+ 
+ /**
+ * @brief This function initialises heather file specific arrays, to be used once
+ */
+ void init_array(void);
+ /**
+ * @brief This function returns available array idx from stack
+ */
+ uint8_t get_idx_from_stack(void);
+ /**
+ * @brief This function pushes released idx to stack
+ */
+ void push_idx_to_stack(uint8_t);
+ /**
+ * @brief This function returns pointer to array containing tune idx
+ */
+ uint8_t * get_tune_idx_arr(void);
  
  #endif /* DAT_PREP_H */
- 
