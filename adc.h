@@ -16,7 +16,14 @@
  */
  uint8_t init_ADC(void);
  
+ /**
+ * @brief This function serves the purpose of a software trigger
+ */
+ void trigger_measure(void);
  
- 
+  /**
+ * @brief This function returns measured value if the conversion was completed
+ */
+ uint8_t return_measurement(void);
  
  #endif /* ADC_H */

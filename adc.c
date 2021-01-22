@@ -8,25 +8,26 @@
  * @brief File containing declarations of functions, structures and enums for ADC module
  * @ver 0.1
  */
- 
+ #define ANALOG_IN 2
+ #define CONV_INIT 0xFF
  #include "adc.h"
  
  uint8_t init_ADC(void)
  {
 	uint16_t callibration;
-	SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK;          // Dołączenie sygnału zegara do ADC0
-	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;					// Dołączenie sygnału zegara do portu B
-	PORTB->PCR[2] &= ~(uint32_t)(1<<2);										//PTB2 - wejście analogowe, kanał 4
-	//ADC0->CFG1 = ADC_CFG1_ADICLK(ADICLK_BUS_2) | ADC_CFG1_ADIV(ADIV_4) | ADC_CFG1_ADLSMP_MASK;	// Zegar wejściowy BUS/2=10.49MHz, zegar ADCK równy 2.62MHz (2621440Hz), długi czas prókowania. Dokumentacja strona 432
-	ADC0->CFG2 = ADC_CFG2_ADHSC_MASK;										// Włącz wspomaganie zegara o dużej częstotliwości. Dokumentacja strona 433
-	ADC0->SC3  = ADC_SC3_AVGE_MASK | ADC_SC3_AVGS(3);		// Włącz uśrednianie na 32 próbki. Dokumentacja strona 438
-	ADC0->SC3 |= ADC_SC3_CAL_MASK;											// Rozpoczęcie kalibracji
-	while(ADC0->SC3 & ADC_SC3_CAL_MASK);								// Czekaj na koniec kalibracji
+	SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK; // Connecting clock to ADC0
+	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; // Connecting clock to PORTB
+	PORTB->PCR[ANALOG_IN] = PORT_PCR_MUX(0);	// Fourth channel of ADC0
+	ADC0->CFG1 = (ADC_CFG1_ADICLK(1) | ADC_CFG1_ADIV(2) | ADC_CFG1_MODE(0)) & (~ADC_CFG1_ADLSMP_MASK);	// Bus CLK/8, to achieve best callibration results. Single-ended 8-bit conversion, short sample time
+	ADC0->CFG2 = ADC_CFG2_ADHSC_MASK;	// Configure ADC for high-speed conversion
+	ADC0->SC3  = ADC_SC3_AVGE_MASK | ADC_SC3_AVGS(3);	// Hardware averaging of 32 samples (for callibration)
+	ADC0->SC3 |= ADC_SC3_CAL_MASK; // Start callibration
+	while(ADC0->SC3 & ADC_SC3_CAL_MASK); // Wait for end of conversion
 	
 	if(ADC0->SC3 & ADC_SC3_CALF_MASK)
 	{
 	  ADC0->SC3 |= ADC_SC3_CALF_MASK;
-	  return(1);																				// Wróć, jeśli błąd kalibracji
+	  return(1);	// Return nonzero value if callibration failed
 	}
 	
 	callibration = 0x00;
@@ -37,16 +38,27 @@
 	callibration += ADC0->CLP4;
 	callibration += ADC0->CLPS;
 	callibration += ADC0->CLPD;
-	callibration = callibration >> 1;
-	callibration |= 1<<16;                       // Ustaw najbardziej znaczący bit na 1
-	ADC0->PG = ADC_PG_PG(callibration);           // Zapisz w  "plus-side gain calibration register"
-	//ADC0->OFS = 0;														// Klaibracja przesunięcia zera (z pomiaru swojego punktu odniesienia - masy)
-	ADC0->SC1[0] = ADC_SC1_ADCH(31);						// Zablokuj przetwornik ADC0
-	ADC0->CFG2 |= ADC_CFG2_ADHSC_MASK;					// Włącz tryb szybkiej konwersji
-	//ADC0->CFG1 = ADC_CFG1_ADICLK(ADICLK_BUS_2) | ADC_CFG1_ADIV(ADIV_1) | ADC_CFG1_ADLSMP_MASK | ADC_CFG1_MODE(MODE_12);	// Zegar ADCK równy 10.49MHz, rozdzielczość 12 bitów, długi czas próbkowania
-	ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // Upewnienie, że wybrane jest wyzwalanie sprzętowe
-	NVIC_ClearPendingIRQ(ADC0_IRQn);
-	NVIC_EnableIRQ(ADC0_IRQn);
-	return(0);																	// Wróć, jeśli wszystko w porządku
+	callibration = callibration >> 1; // Divide the outcome by 2
+	callibration |= 1<<16; // Set the MSB
+	ADC0->PG = ADC_PG_PG(callibration); // Save outcome accordingly
+	ADC0->SC3 &= ~(ADC_SC3_AVGE_MASK | ADC_SC3_AVGS(3)); // Disable hardware averaging
+	ADC0->SC1[0] = ADC_SC1_ADCH(4); // Select channel 4 as input
+	ADC0->CFG1 = (ADC_CFG1_ADICLK(0) | ADC_CFG1_ADIV(0) | ADC_CFG1_MODE(0)) & ~ADC_CFG1_ADLSMP_MASK;	// Bus CLK, single-ended 8-bit conversion, short conversion time
+	ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // Make sure that software trigger is selected
+	return(0);	// Return 0 if init completed succesfully
 
+ }
+ 
+ void trigger_measure(void)
+ {
+	 ADC0->SC1[0] &= CONV_INIT;
+ }
+ 
+ uint8_t return_measurement(void)
+ {
+	 if((ADC0->SC1[0] & ADC_SC1_COCO_MASK) == ADC_SC1_COCO_MASK) // Check the COCO flag
+	 {
+		 return (uint8_t)ADC0->R[0];
+	 }
+	 else return 0;
  }

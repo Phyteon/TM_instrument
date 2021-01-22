@@ -8,4 +8,4 @@
   D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
   D:\Tools\Keil_u_vision\Core\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
   D:\Tools\Keil_u_vision\Pack\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h \
-  ps2.h dac.h
+  ps2.h dac.h adc.h

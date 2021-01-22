@@ -14,7 +14,7 @@
 
 #ifndef DAC_H
 #define DAC_H
-// NXP NIE UMIE PISAĆ DOKUMENTACJI
+
 
 /**
  * @brief Setup operation of 12-bit DAC converter
@@ -25,6 +25,7 @@ void Init_DAC(void);
  * @brief Load data to be converted to DAC register
  */
 void convert(uint8_t, uint8_t);
+
 
 
 #endif /* DAC_H */
