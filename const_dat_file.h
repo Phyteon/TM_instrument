@@ -13,7 +13,7 @@
  #include "MKL05Z4.h"
  
  #define NR_OF_SOUNDS 65
- #define NR_OF_SAMPLES 407
+ #define NR_OF_SAMPLES 407 //1600
  
  #ifndef CONST_DAT_FILE_H
  #define CONST_DAT_FILE_H
