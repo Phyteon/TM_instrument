@@ -23,3 +23,5 @@ W projekcie zostanie także wykorzystana klawiatura komputerowa z wejściem PS/2
 Do użytych w projekcie komponentów możemy zaliczyć: płytkę ewaluacyjną FRDM - KL05Z wyposażoną w mikroprocesor ARM Cortex M0, klawiaturę komputerową wykorzystującą port komunikacyjny PS/2, moduł z głośnikiem do testowania przetworników A/C i C/A Waveshare 3972.
 
 W ramach projektu zostaną utworzone dodatkowe pliki do obsługi klawiatury komputerowej i dopasowywania do zadanych wartości poszczególnych tonów muzycznych.
+# Link do filmiku:
+https://youtu.be/J6HUxXaTPOU
