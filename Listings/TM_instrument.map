@@ -912,18 +912,18 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       188         16          0          0          0       2448   adc.o
-        68         12          0          0          0       1980   dac.o
-       516         16          0          0         31       2038   dat_prep.o
-       308         16      26455          0          2       1785   dsp.o
-        48          0          0          0          0        534   main.o
-       176         36          0          0          4       3633   pit.o
-       418         52          0          0         25       4798   ps2.o
+       188         16          0          0          0       2445   adc.o
+        68         12          0          0          0       1977   dac.o
+       516         16          0          0         31       2041   dat_prep.o
+       308         16      26455          0          2       1788   dsp.o
+        48          0          0          0          0        537   main.o
+       176         36          0          0          4       3624   pit.o
+       418         52          0          0         25       4789   ps2.o
         68         38        192          0        768        848   startup_mkl05z4.o
-        76         16          0          0          0       2333   system_mkl05z4.o
+        76         16          0          0          0       2330   system_mkl05z4.o
 
     ----------------------------------------------------------------------
-      1868        202      26664          0        832      20397   Object Totals
+      1868        202      26664          0        832      20379   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          2          0          1          0          2          0   (incl. Padding)
 
@@ -985,8 +985,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5472        336      26792          0        928      21201   Grand Totals
-      5472        336      26792          0        928      21201   ELF Image Totals
+      5472        336      26792          0        928      21183   Grand Totals
+      5472        336      26792          0        928      21183   ELF Image Totals
       5472        336      26792          0          0          0   ROM Totals
 
 ==============================================================================
